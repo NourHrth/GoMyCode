@@ -1,0 +1,66 @@
+#Q1
+class Point3D:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+    def repr(self):
+        return (self.x, self.y, self.z)
+        
+my_point = Point3D(1,2,3)
+print("(",my_point.x,my_point.y,my_point.z,")")
+
+#Q2
+class Rectangle():
+    def __init__(self, l, w):
+        self.length = l
+        self.width  = w
+
+    def rectangle_area(self):
+        return self.length*self.width
+
+newRectangle = Rectangle(12, 10)
+print(newRectangle.rectangle_area())
+
+#Q3
+class Circle():
+    def __init__(self, r):
+        self.radius = r
+
+    def area(self):
+        return self.radius**2*3.14
+    
+    def perimeter(self):
+        return 2*self.radius*3.14
+
+NewCircle = Circle(8)
+print(NewCircle.area())
+print(NewCircle.perimeter())
+
+
+
+#Q4
+class Bank_Account:
+    def __init__(self):
+        self.balance=0
+        print("Hello welcome to the deposit and withdrawal machine")
+ 
+    def deposit(self):
+        amount=float(input("Enter amount to be deposited: "))
+        self.balance += amount
+        print("\n Amount deposited:",amount)
+ 
+    def withdraw(self):
+        amount = float(input("Enter amount to be withdrawn: "))
+        if self.balance>=amount:
+            self.balance-=amount
+            print("\n You withdrew:", amount)
+        else:
+            print("\n Insufficient balance  ")
+ 
+    def display(self):
+        print("\n Net available balance=",self.balance)
+s = Bank_Account()
+s.deposit()
+s.withdraw()
+s.display()
