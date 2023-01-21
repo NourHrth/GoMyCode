@@ -1,0 +1,46 @@
+#Q1
+from array import *
+array_num = array('i', [1, 3, 5, 3, 7, 1, 9, 3])
+print("Original array: "+str(array_num))
+num_list = array_num.tolist()
+print("Convert the said array to an ordinary list with the same items:")
+print(num_list)
+
+#Q2
+import numpy as np
+m = np.arange(6).reshape(2,3)
+print("Original matrix:")
+print(m)
+result =  np.trace(m)
+print("Condition number of the said matrix:")
+print(result)
+
+#Q3
+import numpy as np
+x = np.array([[0, 10, 20], [20, 30, 40]])
+print("Original array: ")
+print(x)
+print("Values bigger than 10 =", x[x>10])
+print("Their indices are ", np.nonzero(x > 10))
+
+#Q4
+import numpy as np
+A = np.ones((3,3))
+B = np.arange(3)
+print("Original array:")
+print("Array-1")
+print(A)
+print("Array-2")
+print(B)
+print("A + B:")
+new_array = A + B
+print(new_array)
+
+#Q5
+import numpy as np
+print("Original matrix:\n")
+X = np.random.rand(5, 10)
+print(X)
+print("\nSubtract the mean of each row of the said matrix:\n")
+Y = X - X.mean(axis=1, keepdims=True)
+print(Y)
