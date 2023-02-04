@@ -1,0 +1,50 @@
+#Q1
+import requests
+page = requests.get("https://en.wikipedia.org/wiki/Main_Page")
+print(page.status_code)
+print(page.content)
+
+#Q2
+import requests
+from bs4 import BeautifulSoup
+url = 'https://www.geeksforgeeks.org/'
+reqs = requests.get(url)
+soup = BeautifulSoup(reqs.text, 'html.parser')
+print("Title of the website is : ")
+for title in soup.find_all('title'):
+    print(title.get_text())
+
+#Q3
+from bs4 import BeautifulSoup
+import requests
+
+page_link = 'https://en.wikipedia.org/wiki/England'
+page_response = requests.get(page_link,verify=False, timeout=5)
+page_content = BeautifulSoup(page_response.content, "html.parser")
+textContent = []
+for tag in page_content.find_all('h2')[1:]:
+    texth2=tag.text.strip()
+    textContent.append(texth2)
+    for item in tag.find_next_siblings('p'):
+        if texth2 in item.find_previous_siblings('h2')[0].text.strip():
+            textContent.append(item.text.strip())
+            
+print(textContent)
+
+#Q4
+list_of_urls = []
+
+for file in files:     
+    text = open('files_overview/'+file, encoding="utf-8").read()
+    soup = BeautifulSoup(text, features="lxml")
+    for item in soup.findAll("div", attrs={'class':'mw-content-ltr'}):                 
+        url = item.find('a', attrs={'class':'href'=="accident"}): 
+#If i dont add something, like "accident" it gives me a syntax error.. 
+        urls= url.get("href")               
+        urls1="https://en.wikipedia.org"+urls   
+        list_of_urls.append(urls1)
+
+#Q5
+import wikipedia
+result = wikipedia.summary("India", sentences = 2)
+print(result)
