@@ -1,0 +1,73 @@
+#Q1
+def file_read(fname):
+        txt = open(fname)
+        print(txt.read())
+
+file_read('test.txt')
+
+#Q2
+inputFile = "ExampleTextFile.txt"
+N = int(input("Enter N value: "))
+with open(inputFile, 'r') as filedata:
+linesList= filedata.readlines()
+print("The following are the first",N,"lines of a text file:")
+for textline in (linesList[:N]):
+print(textline, end ='')
+filedata.close()
+
+#Q3
+def LastNlines(fname, N):
+    with open(fname) as file:
+        for line in (file.readlines() [-N:]):
+            print(line, end ='')
+if __name__ == '__main__':
+    fname = 'File1.txt'
+    N = 3
+    try:
+        LastNlines(fname, N)
+    except:
+        print('File not found')
+
+#Q4
+number_of_words = 0
+with open(r'SampleFile.txt','r') as file:
+    data = file.read()
+    lines = data.split()
+    number_of_words += len(lines)
+print(number_of_words)
+
+#Q5
+
+import os
+def LastNlines(fname, N):
+	bufsize = 8192
+	fsize = os.stat(fname).st_size
+	
+	iter = 0
+	
+	with open(fname) as f:
+		if bufsize > fsize:
+			bufsize = fsize-1
+			
+			fetched_lines = []
+			
+			while True:
+				iter += 1
+				
+				f.seek(fsize-bufsize * iter)
+				
+				fetched_lines.extend(f.readlines())
+				
+				if len(fetched_lines) >= N or f.tell() == 0:
+						print(''.join(fetched_lines[-N:]))
+						break
+						
+if __name__ == '__main__':
+	
+	fname = 'File1.txt'
+	N = 3
+	
+	try:
+		LastNlines(fname, N)
+	except:
+		print('File not found')
